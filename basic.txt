@@ -1,0 +1,31 @@
+query TestQuery($currentUserName: String!) {
+  github {
+    user(username: $currentUserName) {
+      id
+      company
+      avatar_url
+      repos {
+        name
+        commits {
+          message
+          date
+          author {
+            __typename
+          }
+        }
+      }
+    }
+  }
+}
+
+query giffyy {
+  giphy {
+    random {
+      images {
+        downsized_still {
+          width
+        }
+      }
+    }
+  }
+}

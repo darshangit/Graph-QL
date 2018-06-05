@@ -1,0 +1,41 @@
+query TestQuery($currentUserName: String!,
+$includeCommits: Boolean!,$reposNotNeeded: Boolean!) {
+  github {
+    user(username: $currentUserName) {
+      githubid: id #alias
+      company
+      avatar_url
+      repos @skip(if: $reposNotNeeded){
+        name
+        commits @include(if: $includeCommits) {
+          message
+          date
+          author {
+            __typename
+          }
+        }
+      }
+    }
+  }
+}
+
+query giffyy {
+  giphy {
+    random {
+      images {
+        downsized_still {
+          width
+        }
+      }
+    }
+  }
+}
+
+
+#query variables
+{
+"currentUserName": "leebyron",
+  "includeCommits": true,
+  "reposNotNeeded": true
+  
+}
